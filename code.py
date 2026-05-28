@@ -7,14 +7,14 @@ class TwoStackQueue:
     
     def enqueue(self, value):
         if self.capacity is not None and self.size() >= self.capacity:
-            self.dequeue()
+            self.dequeue() # удаляем самый первый (самый старый)
         
         self.stack_add.append(value)
         self.operations_count += 1
     
     def dequeue(self):
         if self.is_empty():
-            raise IndexError("Очередь пуста!")
+            raise IndexError("Очередь пуста")
         
         if not self.stack_remove:
             while self.stack_add:
@@ -23,7 +23,7 @@ class TwoStackQueue:
         self.operations_count += 1
         return self.stack_remove.pop()
     
-    def front(self):
+    def front(self): # (просмотр первого элемента)
         if self.is_empty():
             raise IndexError("Очередь пуста!")
         
@@ -34,10 +34,10 @@ class TwoStackQueue:
         return self.stack_remove[-1]
     
     def is_empty(self):
-        return len(self.stack_add) == 0 and len(self.stack_remove) == 0
+        return len(self.stack_add) == 0 and len(self.stack_remove) == 0 #Нельзя проверять только один стек. тк элементы могут быть в любом из двух
     
     def size(self):
-        return len(self.stack_add) + len(self.stack_remove)
+        return len(self.stack_add) + len(self.stack_remove) # простое сложение длины двух стеков
     
     def clear(self):
         self.stack_add.clear()
@@ -60,9 +60,8 @@ class TwoStackQueue:
     def contains(self, value):
         return value in self.stack_add or value in self.stack_remove
     
-    def get_operations_count(self):
+    def get_operations_count(self): # возвращает значение счётчика и не меняет очередь
         return self.operations_count
-
 
 if __name__ == "__main__":
     queue = TwoStackQueue(limit=3)
