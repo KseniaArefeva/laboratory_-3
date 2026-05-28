@@ -54,7 +54,7 @@
 if self.capacity is not None and self._current_size() == self.capacity:
     self.pop()   # удаляем голову (самый старый элемент)
 self.input_stack.append(value)
-
+```
 
 ### Проведённые тесты
 
